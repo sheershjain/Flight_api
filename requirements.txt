@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy[all]
+python-dotenv
+psycopg2-binary
+pydantic[email]
+passlib[bcrypt]
+requests
+pytest-cov
+aiofiles
+python-multipart
+black
