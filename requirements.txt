@@ -10,3 +10,4 @@ pytest-cov
 aiofiles
 python-multipart
 black
+python-jose

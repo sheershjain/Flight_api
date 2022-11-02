@@ -2,22 +2,25 @@ from sqlite3 import version
 import os
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path='.env')
-
+load_dotenv(dotenv_path=".env")
 
 
 class Settings:
-    title="Flight_api"
-    description="""
+    title = "Flight_api"
+    description = """
 This API helps you do awesome stuff. 🚀
 
-## Fligts
+## Flights
 
 You can **create and delete Flight details**.
 
 ## Routes
 
 You can **create and delete Flight details**.
+
+## Location
+
+You can **create and delete Location details**.
 
 ## Registration
 
@@ -30,18 +33,29 @@ You can create coupon and apply coupon.
 ## Payment
 
 You can do payment for a flight.
+
+Steps to follow:
+1. Register the passenger
+2. Create Location1
+3. Create Location2
+4. Create Route for the previously created locations
+5. Create Coupon
+6. Apply coupon and do payment
+7. Book the flight
+
+
 """
-    version="0.0.1"
-    terms_of_service="http://example.com/terms/"
-    contact={
+    version = "0.0.1"
+    terms_of_service = "http://example.com/terms/"
+    contact = {
         "name": "Sheersh Jain",
         "email": "sheersh@gkmit.co",
     }
-    license_info={
+    license_info = {
         "name": "Apache 2.0",
         "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
     }
-    DATABASE_URL= os.getenv("POSTGRES_URL")
+    DATABASE_URL = os.getenv("POSTGRES_URL")
     tags_metadata = [
         {
             "name": "Flights",
@@ -59,13 +73,9 @@ You can do payment for a flight.
             "name": "Payment",
             "description": "Manage Payment for booking.",
         },
-
     ]
-    SECRET_KEY= os.getenv("SECRET_KEY")
+    SECRET_KEY = os.getenv("SECRET_KEY")
     ALGORITHM = "HS256"
-   
-    
 
-    
 
-setting=Settings()
+setting = Settings()
