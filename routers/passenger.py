@@ -15,7 +15,7 @@ router = APIRouter()
     response_model=Showuser,
     status_code=status.HTTP_201_CREATED,
 )
-def create_flat(ref: Createuser, db: Session = Depends(get_db)):
+def create_passenger(ref: Createuser, db: Session = Depends(get_db)):
     User = Passenger(**ref.dict())
     User.Password = Hasher.get_password_hash(User.Password)
     db.add(User)
@@ -26,7 +26,7 @@ def create_flat(ref: Createuser, db: Session = Depends(get_db)):
 
 
 @router.delete("/register/delete/{id}", tags=["Register"])
-def delete_flat_by_id(id: int, db: Session = Depends(get_db)):
+def delete_passenger_by_id(id: int, db: Session = Depends(get_db)):
     existing_User = db.query(Passenger).filter(Passenger.id == id)
     if not existing_User.first():
         return {"message": f"No Details found for Passenger ID {id}"}

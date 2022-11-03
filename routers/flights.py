@@ -14,7 +14,7 @@ router = APIRouter()
     response_model=Showflight,
     status_code=status.HTTP_201_CREATED,
 )
-def create_flat(ref: Createflight, db: Session = Depends(get_db)):
+def create_flight(ref: Createflight, db: Session = Depends(get_db)):
     flight = Flights(**ref.dict())
     db.add(flight)
     db.commit()
@@ -24,7 +24,7 @@ def create_flat(ref: Createflight, db: Session = Depends(get_db)):
 
 
 @router.delete("/flights/delete/{id}", tags=["Flights"])
-def delete_flat_by_id(id: int, db: Session = Depends(get_db)):
+def delete_flight_by_id(id: int, db: Session = Depends(get_db)):
     existing_flight = db.query(Flights).filter(Flights.id == id)
     if not existing_flight.first():
         return {"message": f"No Details found for Flight ID {id}"}

@@ -15,7 +15,7 @@ router = APIRouter()
     response_model=Showcoupon,
     status_code=status.HTTP_201_CREATED,
 )
-def create_flat(ref: Createcoupon, db: Session = Depends(get_db)):
+def create_coupon(ref: Createcoupon, db: Session = Depends(get_db)):
     coupon = Coupon(**ref.dict())
     coupon.Issue_date = datetime.now().date()
     db.add(coupon)
@@ -26,7 +26,7 @@ def create_flat(ref: Createcoupon, db: Session = Depends(get_db)):
 
 
 @router.delete("/coupons/coupon/{id}", tags=["Coupons"])
-def delete_flat_by_id(id: int, db: Session = Depends(get_db)):
+def delete_coupon_by_id(id: int, db: Session = Depends(get_db)):
     existing_coupon = db.query(Coupon).filter(Coupon.id == id)
     if not existing_coupon.first():
         return {"message": f"No Details found for Coupon ID {id}"}

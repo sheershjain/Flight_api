@@ -15,7 +15,7 @@ router = APIRouter()
     response_model=Showbooking,
     status_code=status.HTTP_201_CREATED,
 )
-def create_flat(ref: Createbooking, db: Session = Depends(get_db)):
+def create_booking(ref: Createbooking, db: Session = Depends(get_db)):
     obj1 = db.query(Passenger).filter(Passenger.id == ref.Passenger_id)
     if not obj1.first():
         raise HTTPException(
@@ -73,7 +73,7 @@ def create_flat(ref: Createbooking, db: Session = Depends(get_db)):
 
 
 @router.delete("/Booking/delete/{id}", tags=["Booking"])
-def delete_flat_by_id(id: int, db: Session = Depends(get_db)):
+def delete_booking_by_id(id: int, db: Session = Depends(get_db)):
     existing_booking = db.query(Booking).filter(Booking.id == id)
     if not existing_booking.first():
         return {"message": f"No Details found for Booking ID {id}"}

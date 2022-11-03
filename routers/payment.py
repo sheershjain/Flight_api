@@ -15,7 +15,7 @@ router = APIRouter()
     response_model=Showpayment,
     status_code=status.HTTP_201_CREATED,
 )
-def create_flat(ref: Createpayment, db: Session = Depends(get_db)):
+def create_payment(ref: Createpayment, db: Session = Depends(get_db)):
     payment = Payment(**ref.dict())
     payment.Date = datetime.now()
     obj = db.query(Coupon).filter(Coupon.id == ref.Coupon_id)
@@ -34,7 +34,7 @@ def create_flat(ref: Createpayment, db: Session = Depends(get_db)):
 
 
 @router.delete("/payment/delete/{id}", tags=["Payment"])
-def delete_flat_by_id(id: int, db: Session = Depends(get_db)):
+def delete_payment_by_id(id: int, db: Session = Depends(get_db)):
     existing_payment = db.query(Payment).filter(Payment.id == id)
     if not existing_payment.first():
         return {"message": f"No Details found for payment ID {id}"}

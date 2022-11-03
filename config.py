@@ -16,7 +16,7 @@ You can **create and delete Flight details**.
 
 ## Routes
 
-You can **create and delete Flight details**.
+You can **create and delete Route details**.
 
 ## Location
 
@@ -36,8 +36,8 @@ You can do payment for a flight.
 
 Steps to follow:
 1. Register the passenger
-2. Create Location1
-3. Create Location2
+2. Create the flight
+3. Create the Locations for flight
 4. Create Route for the previously created locations
 5. Create Coupon
 6. Apply coupon and do payment
