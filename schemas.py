@@ -46,14 +46,20 @@ class Showlocation(BaseModel):
 
 
 class Createroute(BaseModel):
-    Source_city_id: int
-    Destination_city_id: int
+    Source_city_name: str
+    Destination_city_name: str
+    Flight_id : int
+    Amount : int
+    Starting_time: str
+    Ending_time: str
 
 
 class Showroute(BaseModel):
     id: int
-    Source_city_id: str
-    Destination_city_id: str
+    Flight_name : str
+    Amount : int
+    Starting_time: str
+    Ending_time: str
 
     class Config:
         orm_mode = True
@@ -99,9 +105,10 @@ class Showcoupon(BaseModel):
 
 class Createpayment(BaseModel):
     Bank_name: str
+    Route_id: int
     Payment_mode: str
     Coupon_id: Optional[int] = None
-    Amount: int
+
 
 
 class Showpayment(BaseModel):
@@ -121,38 +128,32 @@ class Showpayment(BaseModel):
 class Createbooking(BaseModel):
     Passenger_id: int
     Route_id: int
-    Flight_id: int
     Transaction_id: int
+
+
 
 
 # class Showbooking(BaseModel):
 #     id: int
-#     Passenger_id : int
-#     Transaction_id : int
-#     Route_id : int
-#     Flight_id : int
-#     Date : date
-#     Status : str
+#     Name: str
+#     Email: str
+#     Contact_no: str
+#     Address: str
+#     Source_city_name: str
+#     Destination_city_name: str
+#     Flight_name: str
+#     Coupon_status: str
+#     Payment_mode: str
+#     Amount_paid: int
+
+#     Date: date
+#     Status: str
 
 #     class Config:
 #         orm_mode = True
 
-
 class Showbooking(BaseModel):
     id: int
-    Name: str
-    Email: str
-    Contact_no: str
-    Address: str
-    Source_city_name: str
-    Destination_city_name: str
-    Flight_name: str
-    Airlines_name: str
-    Coupon_status: str
-    Payment_mode: str
-    Amount_paid: int
-
-    Date: date
     Status: str
 
     class Config:

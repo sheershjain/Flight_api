@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from config import setting
 from database import engine
 from models import Base
-from routers import flights, location, routes, passenger, coupon, payment, booking
+from routers import flights, routes, passenger, coupon, payment, booking
 
 
 Base.metadata.create_all(bind=engine)
@@ -18,7 +18,6 @@ app = FastAPI(
 )
 
 app.include_router(flights.router)
-app.include_router(location.router)
 app.include_router(routes.router)
 app.include_router(passenger.router)
 app.include_router(coupon.router)

@@ -37,8 +37,8 @@ You can do payment for a flight.
 Steps to follow:
 1. Register the passenger
 2. Create the flight
-3. Create the Locations for flight
-4. Create Route for the previously created locations
+3. Create Routes
+4. Select Route for booking
 5. Create Coupon
 6. Apply coupon and do payment
 7. Book the flight
