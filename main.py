@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from config import setting
-from database import engine
-from models import Base
+from db.database import engine
+from db.models.Booking import Base
 from routers import flights, routes, passenger, coupon, payment, booking
 
 

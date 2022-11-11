@@ -1,7 +1,12 @@
 from fastapi import Depends, HTTPException, status
-from database import get_db
-from schemas import Createuser
-from models import Passenger
+from db.database import get_db
+from db.schemas.Passenger import Createuser
+from db.models.Booking import Booking
+from db.models.Passenger import Passenger
+from db.models.Coupon import Coupon
+from db.models.Routes import Routes
+from db.models.Payment import Payment
+from db.models.Flights import Flights
 from sqlalchemy.orm import Session
 
 
@@ -23,3 +28,13 @@ def deletePassengerFun(id: int, db: Session = Depends(get_db)):
     existing_User.delete()
     db.commit()
     return {"message": f"Passenger ID {id} has been successfully deleted"}
+
+
+def getAllPassengersFun(db: Session):
+    passenger = db.query(Passenger).all()
+    if not passenger:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"No Passengers found",
+        )
+    return passenger

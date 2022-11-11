@@ -1,4 +1,3 @@
-from sqlite3 import version
 import os
 from dotenv import load_dotenv
 

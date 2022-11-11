@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, status
-from database import get_db
-from schemas import Createroute, Showroute
+from db.database import get_db
+from db.schemas.Routes import Createroute, Showroute
 from sqlalchemy.orm import Session
 from typing import List
 from functions.routesFun import createRouteFun, deleteRouteFun, getRouteFun

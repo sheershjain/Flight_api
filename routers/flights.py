@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, status
-from database import get_db
-from schemas import Createflight, Showflight
+from db.database import get_db
+from db.schemas.Flights import Createflight, Showflight
 from sqlalchemy.orm import Session
-from functions.flightFun import createFlight, deleteFlightById
+from functions.flightFun import createFlight, deleteFlightById, getAllFlightsFun
+from typing import List
 
 router = APIRouter()
 
@@ -22,3 +23,14 @@ def createFlightRoute(ref: Createflight, db: Session = Depends(get_db)):
 def deleteFlightRoute(id: int, db: Session = Depends(get_db)):
     flight = deleteFlightById(id=id, db=db)
     return flight
+
+
+@router.get(
+    "/flights",
+    response_model=List[Showflight],
+    tags=["Flights"],
+    status_code=status.HTTP_200_OK,
+)
+def getFlightsRoute(db: Session = Depends(get_db)):
+    flights = getAllFlightsFun(db=db)
+    return flights

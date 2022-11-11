@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, status
-from database import get_db
-from schemas import Createpayment, Showpayment
+from db.database import get_db
+from db.schemas.Payment import Createpayment, Showpayment
 from sqlalchemy.orm import Session
 from functions.paymentFun import createPaymentFun, deletePaymentFun
 

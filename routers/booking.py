@@ -1,9 +1,14 @@
 from fastapi import APIRouter, Depends, status
-from database import get_db
-from schemas import Createbooking, Showbooking
+from db.database import get_db
+from db.schemas.Booking import Createbooking, Showbookings, Showbooking
 from sqlalchemy.orm import Session
 from typing import List
-from functions.bookingFun import createBookingFun, deleteBookingFun, getBookingFun
+from functions.bookingFun import (
+    createBookingFun,
+    deleteBookingFun,
+    getBookingFun,
+    getBookingIdFun,
+)
 
 router = APIRouter()
 
@@ -11,6 +16,7 @@ router = APIRouter()
 @router.post(
     "/Booking",
     tags=["Booking"],
+    response_model=Showbooking,
     status_code=status.HTTP_201_CREATED,
 )
 def createBookingRoute(ref: Createbooking, db: Session = Depends(get_db)):
@@ -19,12 +25,23 @@ def createBookingRoute(ref: Createbooking, db: Session = Depends(get_db)):
 
 
 @router.delete("/Booking/delete/{id}", tags=["Booking"])
-def delete_booking_by_id(id: int, db: Session = Depends(get_db)):
+def deleteBookingRoute(id: int, db: Session = Depends(get_db)):
     booking = deleteBookingFun(id=id, db=db)
     return booking
 
 
-@router.get("/booking/getAll/", tags=["Booking"], response_model=List[Showbooking])
+@router.get("/booking/getAll/", tags=["Booking"], response_model=List[Showbookings])
 def getBookingsRoute(db: Session = Depends(get_db)):
-    booking = getBookingFun(db=db)
+    bookings = getBookingFun(db=db)
+    return bookings
+
+
+@router.get(
+    "/booking/{id}",
+    tags=["Booking"],
+    response_model=Showbookings,
+    status_code=status.HTTP_200_OK,
+)
+def getBookingRoute(id: int, db: Session = Depends(get_db)):
+    booking = getBookingIdFun(id=id, db=db)
     return booking

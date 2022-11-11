@@ -1,7 +1,12 @@
 from fastapi import Depends, HTTPException, status
-from database import get_db
-from schemas import Createcoupon
-from models import Coupon
+from db.database import get_db
+from db.schemas.Coupon import Createcoupon
+from db.models.Booking import Booking
+from db.models.Passenger import Passenger
+from db.models.Coupon import Coupon
+from db.models.Routes import Routes
+from db.models.Payment import Payment
+from db.models.Flights import Flights
 from sqlalchemy.orm import Session
 from datetime import datetime
 

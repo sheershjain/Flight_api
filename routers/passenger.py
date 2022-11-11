@@ -1,9 +1,14 @@
 from fastapi import APIRouter, Depends, status
-from database import get_db
-from schemas import Createuser, Showuser
-from models import Passenger
+from db.database import get_db
+from db.schemas.Passenger import Createuser, Showuser
+from db.models.Passenger import Passenger
 from sqlalchemy.orm import Session
-from functions.passengerFun import createPassengerFun, deletePassengerFun
+from functions.passengerFun import (
+    createPassengerFun,
+    deletePassengerFun,
+    getAllPassengersFun,
+)
+from typing import List
 
 router = APIRouter()
 
@@ -20,6 +25,17 @@ def createPassengerRoute(ref: Createuser, db: Session = Depends(get_db)):
 
 
 @router.delete("/register/delete/{id}", tags=["Register"])
-def delete_passenger_by_id(id: int, db: Session = Depends(get_db)):
+def deletePassengerRoute(id: int, db: Session = Depends(get_db)):
     User = deletePassengerFun(id=id, db=db)
     return User
+
+
+@router.get(
+    "/passenger",
+    response_model=List[Showuser],
+    tags=["Register"],
+    status_code=status.HTTP_200_OK,
+)
+def getPassengersRoute(db: Session = Depends(get_db)):
+    passenger = getAllPassengersFun(db=db)
+    return passenger

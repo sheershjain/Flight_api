@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, status
-from database import get_db
-from schemas import Createcoupon, Showcoupon
+from db.database import get_db
+from db.schemas.Coupon import Createcoupon, Showcoupon
 from sqlalchemy.orm import Session
 from functions.couponFun import createCouponFun, deleteCouponFun
 
